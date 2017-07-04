@@ -161,7 +161,7 @@
     width: 25rem;
     overflow-x: hidden;
     overflow-y: scroll;
-    padding-top: 4.5rem;
+    margin-top: 4.5rem;
     background: #f9f9f9;
     background-clip: content-box;
     -webkit-overflow-scrolling: touch;

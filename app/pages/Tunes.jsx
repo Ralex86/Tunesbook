@@ -105,6 +105,9 @@ export default class Tunes extends Component {
                                     <p>
                                         The database was populated with <a href="http://www.norbeck.nu/abc/">Henrik Norbeck's</a> reels transcriptions. The svg rendering is done on the server side thanks to <a href="http://moinejf.free.fr/js/">Jeff Moine's</a> abc2svg api !
                                     </p>
+                                    <p>
+                                        This app is open source and its github repo is avaible <a href="https://github.com/Ralex86/Tunesbook">here</a> ! 
+                                    </p>
                                 </div>
                             </div>
                         )} />
