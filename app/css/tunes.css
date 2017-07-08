@@ -1,7 +1,8 @@
 .root{
-    position: relative;
+    position: absolute;
     z-index: 1;
     height: 100%;
+    width: 100%;
     overflow: hidden;
     background: #fff;
     -webkit-transition: opacity .2s;
@@ -217,7 +218,7 @@
     height: 100%;
     overflow-y: scroll;
     /*margin-left: .875rem;*/
-    padding: 1.125rem 1.5rem 0;
+    padding: 4.5rem 1rem 1rem 1rem;
     font-size: .875rem;
     pointer-events: auto;
     -webkit-overflow-scrolling: touch

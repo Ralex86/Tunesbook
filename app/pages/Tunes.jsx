@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import {NavLink, Route} from 'react-router-dom'
 import 'whatwg-fetch'
 import styles from './../css/tunes.css'
+import Chat from './../Chat.jsx'
 
 export default class Tunes extends Component {
     constructor(props){
@@ -63,6 +64,8 @@ export default class Tunes extends Component {
         const {tunes, filteredTunes} = this.state
         const updateTuneList = this.updateTuneList
         return(
+            <div>
+            <Chat/>
             <div className={styles.root}>
                 <Search tunes={tunes} updateTuneList={updateTuneList}/>
                 <SortBar by={this.state.by} sortById={this.sortById} sortByName={this.sortByName} sortByKey={this.sortByKey}/>
@@ -121,6 +124,7 @@ export default class Tunes extends Component {
                     </div>
                 </div>
             </div>
+        </div>
         )
     }
 }
