@@ -20,6 +20,12 @@
     position: relative
 }
 
+.iconbar div:last-child{
+    font-size: small;
+    color: #3377c0;
+    padding-top: 1.25rem;
+}
+
 .badge {
   background-color: #fa3e3e;
   border-radius: 2px;
@@ -64,7 +70,7 @@
     width: 20rem;
     margin-right: 2rem;
     right: 0;
-    top: 4.5rem;
+    top: 4.75rem;
     background: #fff;
     opacity: 0.9;
     border: 1px solid #ccc;
@@ -77,6 +83,7 @@
     -webkit-border-radius: 2px;
     border-radius: 2px;
     -webkit-user-select: text;
+    font-size: 0.9rem;
 }
 
 

@@ -15,7 +15,8 @@ export default class Chat extends Component{
         this.state = {
             messages: [],
             users: [],
-            display: false
+            display: false,
+            username: ""
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -38,6 +39,13 @@ export default class Chat extends Component{
                 } else {
                     console.log('No error');
                 }
+            })
+        })
+
+        this.socket.on('username', (username) => {
+            console.log(username, "didmount username to client")
+            this.setState({
+                username: username
             })
         })
 
@@ -111,8 +119,12 @@ paddingLeft: '0.5rem'}} >{message.createdAt}</span>
                 </div>
             ) : null
 
+        const messagebadge = this.state.messages.length > 0 ? (
+            <span className={styles.badge}> {this.state.messages.length} </span>
+        ) : (
+            null
+        )
 
-        console.log(this.state.display)
         return(
             <div>
                 <Iconbar>
@@ -122,6 +134,10 @@ paddingLeft: '0.5rem'}} >{message.createdAt}</span>
                     </Icon>
                     <Icon show={this.handleDisplay}>
                         <FaComments/>
+                        {messagebadge}
+                    </Icon>
+                    <Icon show={this.handleDisplay}>
+                        {this.state.username}
                     </Icon>
                 </Iconbar>
                 {container}
@@ -138,6 +154,7 @@ class Icon extends React.Component{
     }
 
     render(){
+
         return (
             <div onClick={this.props.show}>
                 {this.props.children}

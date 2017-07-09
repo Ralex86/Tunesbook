@@ -3,6 +3,7 @@ import {NavLink, Route} from 'react-router-dom'
 import 'whatwg-fetch'
 import styles from './../css/tunes.css'
 import Chat from './../Chat.jsx'
+import FaCaretLeft from 'react-icons/lib/fa/caret-left'
 
 export default class Tunes extends Component {
     constructor(props){
@@ -11,13 +12,15 @@ export default class Tunes extends Component {
         this.state = {
             tunes: null,
             filteredTunes: null,
-            by: ""
+            by: "",
+            sidebar: true
         }
 
         this.updateTuneList = this.updateTuneList.bind(this)
         this.sortById = this.sortById.bind(this)
         this.sortByKey = this.sortByKey.bind(this)
         this.sortByName = this.sortByName.bind(this)
+        this.handleSidebar = this.handleSidebar.bind(this)
     }
 
     componentDidMount(){
@@ -31,6 +34,12 @@ export default class Tunes extends Component {
                 })
             })
             .catch(err => console.log(err))
+    }
+
+    handleSidebar(){
+        this.setState({
+            sidebar: !this.state.sidebar
+        })
     }
 
     updateTuneList(list){
@@ -63,6 +72,7 @@ export default class Tunes extends Component {
     render(){
         const {tunes, filteredTunes} = this.state
         const updateTuneList = this.updateTuneList
+        console.log(this.state.sidebar)
         return(
             <div>
             <Chat/>
@@ -70,7 +80,7 @@ export default class Tunes extends Component {
                 <Search tunes={tunes} updateTuneList={updateTuneList}/>
                 <SortBar by={this.state.by} sortById={this.sortById} sortByName={this.sortByName} sortByKey={this.sortByKey}/>
 
-                <div className={styles.sidebar}>
+                <div className={styles.sidebar} >
                     {filteredTunes ? (
                         filteredTunes.map(tune => (
                             <NavLink exact to={`/${tune.id}`} key={tune.id} className={styles.sidebar_item} activeClassName={styles.active} >
@@ -91,7 +101,8 @@ export default class Tunes extends Component {
                         </div>
                     )}
                 </div>
-                <div className={styles.container}>
+                <div className={styles.container} style={this.state.sidebar ? {marginLeft: '25rem'} : {marginLeft: 0}}>
+                    <Toggle handleSidebar={this.handleSidebar}/>
                     <div className={styles.content}>
                         <Route exact={true} path="/" render={ ()=> (
                             <div className={styles.intro}>
@@ -125,6 +136,30 @@ export default class Tunes extends Component {
                 </div>
             </div>
         </div>
+        )
+    }
+}
+
+class Toggle extends Component {
+    constructor(props){
+        super(props)
+        }
+
+    render(){
+        return (
+            <div style={{position: 'absolute',
+                zIndex: 4,
+                cursor: 'pointer',
+                top: '0.45rem',
+                padding: '0.45rem 0.2rem',
+                borderTop: '1px solid #D4D4D4',
+                borderRight: '1px solid #D4D4D4',
+                borderBottom: '1px solid #D4D4D4',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'}} onClick={this.props.handleSidebar}>
+                <FaCaretLeft/>  
+            </div>
         )
     }
 }
