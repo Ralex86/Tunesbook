@@ -4,6 +4,8 @@ import 'whatwg-fetch'
 import styles from './../css/tunes.css'
 import Chat from './../Chat.jsx'
 import FaCaretLeft from 'react-icons/lib/fa/caret-left'
+import FaCaretRight from 'react-icons/lib/fa/caret-right'
+import FaMusic from 'react-icons/lib/fa/music'
 
 export default class Tunes extends Component {
     constructor(props){
@@ -72,7 +74,6 @@ export default class Tunes extends Component {
     render(){
         const {tunes, filteredTunes} = this.state
         const updateTuneList = this.updateTuneList
-        console.log(this.state.sidebar)
         return(
             <div>
             <Chat/>
@@ -102,7 +103,7 @@ export default class Tunes extends Component {
                     )}
                 </div>
                 <div className={styles.container} style={this.state.sidebar ? {marginLeft: '25rem'} : {marginLeft: 0}}>
-                    <Toggle handleSidebar={this.handleSidebar}/>
+                    <Toggle handleSidebar={this.handleSidebar} sidebar={this.state.sidebar}/>
                     <div className={styles.content}>
                         <Route exact={true} path="/" render={ ()=> (
                             <div className={styles.intro}>
@@ -143,22 +144,21 @@ export default class Tunes extends Component {
 class Toggle extends Component {
     constructor(props){
         super(props)
-        }
+
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+
+    handleClick(callback){
+        callback()
+    }
 
     render(){
+        const handleSidebar = this.props.handleSidebar
         return (
-            <div style={{position: 'absolute',
-                zIndex: 4,
-                cursor: 'pointer',
-                top: '0.45rem',
-                padding: '0.45rem 0.2rem',
-                borderTop: '1px solid #D4D4D4',
-                borderRight: '1px solid #D4D4D4',
-                borderBottom: '1px solid #D4D4D4',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'}} onClick={this.props.handleSidebar}>
-                <FaCaretLeft/>  
+            <div className={styles.toggle} onClick={() => this.handleClick(handleSidebar)}>
+                {this.props.sidebar ? <FaCaretLeft/> : <FaCaretRight/>}
+                <span className={styles.tooltip}>{this.props.sidebar ? 'Hide sidebar' : 'Show sidebar'}</span>
             </div>
         )
     }
@@ -170,8 +170,11 @@ class Tune extends Component {
 
         this.state={
             tune: props.tune,
-            svg: null
+            svg: null,
+            showabc: false
         }
+
+        this.handleClick = this.handleClick.bind(this)
     }  
 
     componentDidMount(){
@@ -186,7 +189,6 @@ class Tune extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log(nextProps,this.props)
         if (nextProps.tune.id !== this.props.tune.id){
             fetch(`http://alexandre.hassler.fr:3000/tune?id=${nextProps.tune.id}`)
                 .then(res => res.json())
@@ -201,26 +203,40 @@ class Tune extends Component {
         }
     }
 
-    render(){ 
+    handleClick(){
+        this.setState((prevState, props) => {
+            return { showabc: !prevState.showabc } 
+        })
+    }
+
+    render(){
         const {tune} = this.props
         const {svg} = this.state
-            //<div>
-            //    <p>X:{tune.id}</p>
-            //    <p>T:{tune.T}</p>
-            //    <p>R:{tune.R}</p>
-            //    <p>M:{tune.M}</p>
-            //    <p>K:{tune.K}</p>
-            //    {tune.body}
         return (
             <div>
+                <div onClick={this.handleClick} className={styles.abc_btn}>
+                    <FaMusic/> abc
+                </div>
+                {tune && this.state.showabc ? (
+                    <div className={styles.abc}>
+                        <div className={styles.abc_header}>
+                            <p>X:<span>{tune.id}</span></p>
+                            <p>T:<span>{tune.T}</span></p>
+                            <p>R:<span>{tune.R}</span></p>
+                            <p>M:<span>{tune.M}</span></p>
+                            <p>K:<span>{tune.K}</span></p>
+                            {tune.body}
+                        </div>
+                    </div>
+                ) : (null)}
+
                 {svg ?(
                     <Svg svg={svg}/>
                 ) : (
                     <div>
                         Loading...
                     </div>
-                )
-                }
+                )}
             </div>
         )
     }

@@ -131,13 +131,18 @@ paddingLeft: '0.5rem'}} >{message.createdAt}</span>
                     <Icon show={this.handleDisplay}>
                         <FaUser/>
                         <span className={styles.badge}> {this.state.users.length} </span>
+                        <span className={styles.tooltip}> 
+                            {users}
+                        </span>
                     </Icon>
                     <Icon show={this.handleDisplay}>
                         <FaComments/>
                         {messagebadge}
+                        <span className={styles.tooltip}>Click to chat</span>
                     </Icon>
                     <Icon show={this.handleDisplay}>
                         {this.state.username}
+                        <span className={styles.tooltip}> Your username </span>
                     </Icon>
                 </Iconbar>
                 {container}
@@ -156,7 +161,7 @@ class Icon extends React.Component{
     render(){
 
         return (
-            <div onClick={this.props.show}>
+            <div onClick={this.props.show} className={styles.icon}>
                 {this.props.children}
             </div>
         )    

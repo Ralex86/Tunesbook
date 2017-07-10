@@ -13,17 +13,52 @@
     -ms-user-select: none;
 }
 
-.iconbar div {
+
+.iconbar div:last-child{
+    font-size: small;
+    color: #3377c0;
+    padding-top: 1.25rem;
+}
+
+.icon{
     color: #ccc;
     cursor:pointer;
     padding: 0.5rem;
     position: relative
 }
 
-.iconbar div:last-child{
-    font-size: small;
-    color: #3377c0;
-    padding-top: 1.25rem;
+.icon .tooltip {
+    visibility: hidden;
+    /* width: 120px; */
+    width: 6rem;
+    background-color: #494949;
+    text-align: center;
+    padding: 0.1rem 0;
+    font-size: 11px;
+    position: absolute;
+    z-index: 10;
+    top: 3.5rem;
+    left: 50%;
+    margin-left: -3rem;
+    color: #fff;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1))
+}
+
+.icon .tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #494949 transparent;
+}
+
+.icon:hover .tooltip {
+    visibility: visible;
+    list-style: none; /*for users list*/
 }
 
 .badge {
@@ -65,7 +100,7 @@
 
 .container{
     position: absolute;
-    z-index: 4;
+    z-index: 3;
     height: 30rem;
     width: 20rem;
     margin-right: 2rem;
