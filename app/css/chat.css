@@ -1,3 +1,4 @@
+
 .iconbar{
     position: fixed;
     z-index: 4;
@@ -177,3 +178,16 @@
     border-color: #35b5f4; 
     box-shadow: 0 0 1px #35b5f4 
 }   
+
+
+
+@media (min-width:481px)  {
+    .iconbar{
+        display: none;
+    }
+}
+@media (min-width:641px)  {
+    .iconbar{
+        display: flex;
+    }
+}
