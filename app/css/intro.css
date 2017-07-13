@@ -1,0 +1,87 @@
+.intro{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;    
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: calc(100% - 5.5rem);
+    /*min-height: calc(100vh - 2.375rem);*/
+}
+
+.intro_updates{
+    background: #fbe6d1;
+    border: 1px solid #ec8b01;
+    max-width: 25rem;
+    margin: 1rem 0;
+    border-radius: 3px;
+    /* padding: 1rem 1.25rem; */
+    font-size: 0.6rem;
+    padding: 0.7rem;
+}
+
+.intro_updates div{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 0.5rem;
+}
+
+.intro_message{
+    max-width: 37rem;
+    /* margin: .5rem 0; */
+    padding: 1rem 1.25rem;
+    background: #e7f8e1;
+    margin: 1.5rem 0;
+    /* padding: .5rem .875rem; */
+    border: 1px solid #89da70;
+    border-radius: 3px
+}
+
+.intro_updates a:hover, .intro_message a:hover {
+    color: #2f6cb6;
+    text-decoration: underline
+}
+
+.intro_updates h2, .intro_message h2{
+    font-size: 1.5em;
+    /*-webkit-margin-before: 0.83em;*/
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.intro_updates a, .intro_message a{
+    color: #3377c0;
+    text-decoration: none
+}
+
+.intro_updates > ol{
+    display: block;
+    list-style-type: decimal;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+    margin: 1.5em 0;
+    padding: 0 0 0 1em;
+    list-style: disc outside;
+}
+
+.intro_message > ol {
+    display: block;
+    list-style-type: decimal;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+    margin: 1.5em 0;
+    padding: 0 0 0 2em;
+    list-style: disc outside;
+}

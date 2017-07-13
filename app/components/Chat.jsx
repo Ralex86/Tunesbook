@@ -1,12 +1,12 @@
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
 import io from 'socket.io-client'
-import styles from './css/chat.css'
 import FaUser from 'react-icons/lib/fa/user'
 import FaComments from 'react-icons/lib/fa/comments'
 import FaCommentingO from 'react-icons/lib/fa/commenting-o'
 
-//import moment from './../utils/moment.js'
+// my modules
+import styles from './../css/chat.css'
 
 
 export default class Chat extends Component{

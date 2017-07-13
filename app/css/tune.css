@@ -1,0 +1,54 @@
+.abc_btn{
+    padding: 0.5em 1.5em;
+    color: #398df0;
+    border: 1px solid #398df0;
+    border-radius: 3px;
+    text-decoration: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: inline-block;
+    margin-left: 7.5rem;
+    cursor: pointer;
+}
+
+.abc_btn:hover{
+    color: white;
+    background-color: #398df0;
+}
+
+.abc{
+    background: #fafafa;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-weight: normal;
+    font-style: normal;
+    font-size: .9em;
+    color: #333;
+    white-space: pre-wrap;
+    direction: ltr;
+    -moz-tab-size: 2;
+    -o-tab-size: 2;
+    tab-size: 2;
+    position: relative;
+    margin: 1.5em 0;
+    padding: .375rem .625rem;
+    line-height: 1.5;
+    overflow: auto;
+    width: 33rem;
+    margin-left: 7.5rem;
+}
+
+.abc_header {
+    color: #333;
+}
+
+.abc_header p{
+    color: #690; /*prism syntax scheme*/
+}
+
+.abc_header span{
+    color: #07a;
+}

@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {HashRouter} from 'react-router-dom'
-import Tunes from './pages/Tunes.jsx'
+import Main from './components/Main.jsx'
 
 class App extends React.Component{
     render(){
         return(
                 <HashRouter>
-                    <Tunes/>
+                    <Main/>
                 </HashRouter>
         )
     }

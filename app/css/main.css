@@ -1,0 +1,80 @@
+.root{
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s
+}
+
+.sidebar{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 25rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-top: 4.5rem;
+    background: #f9f9f9;
+    background-clip: content-box;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+}
+
+.sidebar_item{
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    text-overflow: ellipsis;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+    padding: .25rem .75rem;
+    line-height: 1.5rem;
+    font-size: .875rem;
+    cursor: default;
+    background: #f9f9f9;
+    box-shadow: inset -1px 0 #e1e1e1;
+}
+
+
+.sidebar_item{text-decoration: none; color: #333;} /* Globally */
+
+/* Each state */
+
+.sidebar_item:hover { text-decoration: none; color: #398df0; }
+.sidebar_item.active { text-decoration: none; color: #fff; }
+
+.active{
+    color: #fff;
+    background: #398df0;
+    box-shadow: inset -1px 0 #196fc2
+}
+
+.container{
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    overflow: scroll;
+    background: #fff;
+    -webkit-transition: margin-left .35s ease-in-out;
+    transition: margin-left .35s ease-in-out;
+}
+
+.content{
+    position: relative;
+    height: calc(100% - 5.5rem);
+    background: white;
+    /*margin-left: .875rem;*/
+    padding: 4.5rem 1rem 1rem 1rem;
+    font-size: .875rem;
+    pointer-events: auto;
+    -webkit-overflow-scrolling: touch
+}
