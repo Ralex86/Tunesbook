@@ -20,7 +20,7 @@ export default class Tune extends Component {
     }  
 
     componentDidMount(){
-        fetch(`http://alexandre.hassler.fr:3000/tune?id=${this.props.tune.id}`)
+        fetch(`http://alexandre.hassler.fr:3000/svg/${this.props.rhythm}/${this.props.tune.id}`)
             .then(res => res.json())
             .then(svg => {
                 this.setState({
@@ -32,7 +32,7 @@ export default class Tune extends Component {
 
     componentWillReceiveProps(nextProps){
         if (nextProps.tune.id !== this.props.tune.id){
-            fetch(`http://alexandre.hassler.fr:3000/tune?id=${nextProps.tune.id}`)
+            fetch(`http://alexandre.hassler.fr:3000/svg/${nextProps.rhythm}/${nextProps.tune.id}`)
                 .then(res => res.json())
                 .then(svg => {
                     this.setState({

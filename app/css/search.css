@@ -3,8 +3,8 @@
     z-index: 3;
     top: 0;
     left: 0;
-    display: -ms-flexbox;
     display: flex;
+    align-items: center;
     width: 25rem;
     height: 3rem;
     background: #eee;
@@ -13,7 +13,6 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
 
 .search:before{
     content: '';
@@ -32,6 +31,7 @@
 }
 
 .search{
+    -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     position: relative;
     height: calc(100% - 1rem);
@@ -61,3 +61,5 @@
     border-color: #35b5f4;
     box-shadow: 0 0 1px #35b5f4
 }
+
+

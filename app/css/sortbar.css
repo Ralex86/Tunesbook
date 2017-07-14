@@ -1,6 +1,6 @@
 .header_bar{
     position: absolute;
-    z-index: 3;
+    z-index: 2;
     top: 3rem;
     left: 0;
     display: -ms-flexbox;

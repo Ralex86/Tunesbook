@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import styles from './../css/search.css'
+import Menu from './Menu.jsx'
 
 export default class Search extends Component {
     constructor(props){
@@ -27,6 +28,7 @@ export default class Search extends Component {
                 <div className={styles.search}>
                     <input placeholder="Search a reel..." autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" type="text" onChange={this.handleChange}/>
                 </div>
+                <Menu setRhythm={this.props.setRhythm}/>
             </div>   
         )
     }

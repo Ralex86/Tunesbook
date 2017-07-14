@@ -17,6 +17,7 @@ export default class Main extends Component {
 
         this.state = {
             tunes: null,
+            rhythm: "",
             filteredTunes: null,
             by: "",
             sidebar: true
@@ -27,14 +28,17 @@ export default class Main extends Component {
         this.sortByKey = this.sortByKey.bind(this)
         this.sortByName = this.sortByName.bind(this)
         this.handleSidebar = this.handleSidebar.bind(this)
+
+        this.setRhythm = this.setRhythm.bind(this)
     }
 
     componentDidMount(){
-        fetch('http://alexandre.hassler.fr:3000/tunes')
+        fetch('http://alexandre.hassler.fr:3000/tunes/reels')
             .then(res => res.json())
             .then(tunes => {
                 this.setState({
                     tunes: tunes,
+                    rhythm: "reels",
                     filteredTunes: tunes,
                     by: "id"
                 })
@@ -75,6 +79,21 @@ export default class Main extends Component {
         })
     }
 
+    setRhythm(rhythm){
+        console.log(rhythm)
+        fetch(`http://alexandre.hassler.fr:3000/tunes/${rhythm}`)
+            .then(res => res.json())
+            .then(tunes => {
+                this.setState({
+                    tunes: tunes,
+                    rhythm: rhythm,
+                    filteredTunes: tunes,
+                    by: "id"
+                })
+            })
+            .catch(err => console.log(err))
+    }
+
     render(){
         const {tunes, filteredTunes} = this.state
         const updateTuneList = this.updateTuneList
@@ -82,7 +101,7 @@ export default class Main extends Component {
             <div>
             <Chat/>
             <div className={styles.root}>
-                <Search tunes={tunes} updateTuneList={updateTuneList}/>
+                <Search tunes={tunes} setRhythm={this.setRhythm} updateTuneList={updateTuneList}/>
                 <SortBar by={this.state.by} sortById={this.sortById} sortByName={this.sortByName} sortByKey={this.sortByKey}/>
 
                 <div className={styles.sidebar} >
@@ -113,7 +132,7 @@ export default class Main extends Component {
                         <Intro/>
                         {tunes && (
                             <Route path="/:tuneId" render={(routeProps) => (
-                                <Tune {...routeProps} tune={tunes.find( t => t.id == routeProps.match.params.tuneId)}/>
+                                <Tune rhythm={this.state.rhythm} {...routeProps} tune={tunes.find( t => t.id == routeProps.match.params.tuneId)}/>
                             )} />
                         )}
                     </div>
