@@ -40,8 +40,8 @@ export default class Menu extends Component{
                     </div>
                     <a onClick={() => this.handleRhythm("reels")}>Reels</a>
                     <a onClick={() => this.handleRhythm("jigs")}>Jigs</a>
-                    <a>Hornpipes soon...</a>
-                    <a>Polkas soon...</a>
+                    <a onClick={() => this.handleRhythm("hornpipes")}>Hornpipes</a>
+                    <a onClick={() => this.handleRhythm("polkas")}>Polkas</a>
                 </div>
             </div>
         )
