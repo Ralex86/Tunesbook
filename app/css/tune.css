@@ -1,5 +1,11 @@
+.btnbar{
+    display: flex;
+    margin-left: 4rem;
+}
+
 .abc_btn{
     padding: 0.5em 1.5em;
+    margin: 0 0.5rem;
     color: #398df0;
     border: 1px solid #398df0;
     border-radius: 3px;
@@ -9,7 +15,6 @@
     -ms-user-select: none;
     user-select: none;
     display: inline-block;
-    margin-left: 7.5rem;
     cursor: pointer;
 }
 

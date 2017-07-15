@@ -52,16 +52,16 @@
 
 
 .btn{
-    color: #666;
-    width: 2rem;
-    height: 2rem;
-    padding-right: 0.6rem;
+    color: #398df0;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding-right: .6rem;
     padding-bottom: 0.2rem;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .btn:hover{
-    color: #398df0;
+    color: #666;
 }
 
 

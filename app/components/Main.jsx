@@ -9,6 +9,7 @@ import Toggle from './Toggle.jsx'
 import Tune from './Tune.jsx'
 import Search from './Search.jsx'
 import SortBar from './SortBar.jsx'
+import Player from './Player.jsx'
 import Intro from './../pages/Intro.jsx'
 
 export default class Main extends Component {
@@ -20,7 +21,9 @@ export default class Main extends Component {
             rhythm: "",
             filteredTunes: null,
             by: "",
-            sidebar: true
+            sidebar: true,
+            player: false,
+            videoid: ""
         }
 
         this.updateTuneList = this.updateTuneList.bind(this)
@@ -28,7 +31,7 @@ export default class Main extends Component {
         this.sortByKey = this.sortByKey.bind(this)
         this.sortByName = this.sortByName.bind(this)
         this.handleSidebar = this.handleSidebar.bind(this)
-
+        this.handlePlayer = this.handlePlayer.bind(this)
         this.setRhythm = this.setRhythm.bind(this)
     }
 
@@ -94,50 +97,62 @@ export default class Main extends Component {
             .catch(err => console.log(err))
     }
 
+    handlePlayer(id){
+        this.setState((prevState) => {
+            return {
+                player: !prevState.player,
+                videoid: id
+            }
+        })
+    }
+
     render(){
         const {tunes, filteredTunes} = this.state
         const updateTuneList = this.updateTuneList
         return(
             <div>
-            <Chat/>
-            <div className={styles.root}>
-                <Search tunes={tunes} setRhythm={this.setRhythm} updateTuneList={updateTuneList}/>
-                <SortBar by={this.state.by} sortById={this.sortById} sortByName={this.sortByName} sortByKey={this.sortByKey}/>
+                {this.state.player && this.state.videoid ? (
+                    <Player id={this.state.videoid}/>
+                ) : (null)}
+                <Chat/>
+                <div className={styles.root}>
+                    <Search tunes={tunes} setRhythm={this.setRhythm} updateTuneList={updateTuneList}/>
+                    <SortBar by={this.state.by} sortById={this.sortById} sortByName={this.sortByName} sortByKey={this.sortByKey}/>
 
-                <div className={styles.sidebar} >
-                    {filteredTunes ? (
-                        filteredTunes.map(tune => (
-                            <NavLink exact to={`/${tune.id}`} key={tune.id} className={styles.sidebar_item} activeClassName={styles.active} >
-                                <div style={{width: '33px'}}>
-                                    {tune.id}
-                                </div>
-                                <div style={{flex: 1, maxWidth: '300px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                                    {tune.T}
-                                </div>
-                                <div style={{width: '33px', alignSelf: 'flexEnd'}}> 
-                                    {tune.K}
-                                </div>
-                            </NavLink>
-                        ))
-                    ) : (
-                        <div>
-                            Loading...
-                        </div>
-                    )}
-                </div>
-                <div className={styles.container} style={this.state.sidebar ? {marginLeft: '25rem'} : {marginLeft: 0}}>
-                    <Toggle handleSidebar={this.handleSidebar} sidebar={this.state.sidebar}/>
-                        
-                    <div className={styles.content}>
-                        <Intro/>
-                        {tunes && (
-                            <Route path="/:tuneId" render={(routeProps) => (
-                                <Tune rhythm={this.state.rhythm} {...routeProps} tune={tunes.find( t => t.id == routeProps.match.params.tuneId)}/>
-                            )} />
+                    <div className={styles.sidebar} >
+                        {filteredTunes ? (
+                            filteredTunes.map(tune => (
+                                <NavLink exact to={`/${tune.id}`} key={tune.id} className={styles.sidebar_item} activeClassName={styles.active} >
+                                    <div style={{width: '33px'}}>
+                                        {tune.id}
+                                    </div>
+                                    <div style={{flex: 1, maxWidth: '300px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                                        {tune.T}
+                                    </div>
+                                    <div style={{width: '33px', alignSelf: 'flexEnd'}}> 
+                                        {tune.K}
+                                    </div>
+                                </NavLink>
+                            ))
+                        ) : (
+                            <div>
+                                Loading...
+                            </div>
                         )}
                     </div>
+                    <div className={styles.container} style={this.state.sidebar ? {marginLeft: '25rem'} : {marginLeft: 0}}>
+                        <Toggle handleSidebar={this.handleSidebar} sidebar={this.state.sidebar}/>
+
+                        <div className={styles.content}>
+                            <Intro/>
+                            {tunes && (
+                                <Route path="/:tuneId" render={(routeProps) => (
+                                    <Tune handlePlayer={this.handlePlayer} rhythm={this.state.rhythm} {...routeProps} tune={tunes.find( t => t.id == routeProps.match.params.tuneId)}/>
+                                )} />
+                            )}
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
         )
     }

@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import FaMusic from 'react-icons/lib/fa/music'
+import FaYoutubePlay from 'react-icons/lib/fa/youtube-play'
 import 'whatwg-fetch'
+
 
 //my modules
 import Svg from './Svg.jsx'
@@ -13,10 +15,12 @@ export default class Tune extends Component {
         this.state={
             tune: props.tune,
             svg: null,
-            showabc: false
+            showabc: false,
+            videoid: "KdgpL3H-4Hs"
         }
 
         this.handleClick = this.handleClick.bind(this)
+        this.handlePlayer = this.handlePlayer.bind(this)
     }  
 
     componentDidMount(){
@@ -50,15 +54,27 @@ export default class Tune extends Component {
             return { showabc: !prevState.showabc } 
         })
     }
+    
+    handlePlayer(){
+        console.log(this.props, this.state.videoid)
+        this.props.handlePlayer(this.state.videoid)
+    }
 
     render(){
         const {tune} = this.props
         const {svg} = this.state
+     
         return (
             <div>
-                <div onClick={this.handleClick} className={styles.abc_btn}>
-                    <FaMusic/> abc
+                <div className={styles.btnbar}>
+                    <div onClick={this.handlePlayer} className={styles.abc_btn}>
+                        <FaYoutubePlay/> <span>Youtube</span>
+                    </div>
+                    <div onClick={this.handleClick} className={styles.abc_btn}>
+                        <FaMusic/> <span>Abc</span>
+                    </div>
                 </div>
+                
                 {tune && this.state.showabc ? (
                     <div className={styles.abc}>
                         <div className={styles.abc_header}>
