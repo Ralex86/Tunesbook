@@ -1,6 +1,8 @@
 .btnbar{
     display: flex;
-    margin-left: 4rem;
+    margin-left: 7rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .abc_btn{
@@ -16,6 +18,7 @@
     user-select: none;
     display: inline-block;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .abc_btn:hover{

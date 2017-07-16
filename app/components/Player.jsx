@@ -13,7 +13,10 @@ export default class Player extends React.Component{
             height: '200',
             width: '350',
             playerVars: {
-                autoplay: 1
+                autoplay: 1,
+                color: "white",
+                showinfo: 0,
+                rel: 0
             }
         }
         const videoid = this.props.id

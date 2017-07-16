@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import FaMusic from 'react-icons/lib/fa/music'
+import FaBook from 'react-icons/lib/fa/book'
 import FaClose from 'react-icons/lib/fa/close'
 
 import styles from './../css/menu.css'
@@ -30,7 +30,7 @@ export default class Menu extends Component{
         const menu = this.state.open ? styles.open : styles.close
         return (
             <div>
-                <FaMusic onClick={this.handleClick} className={styles.btn}/>
+                <FaBook onClick={this.handleClick} className={styles.btn}/>
                 <div  className={menu}>
                     <div className={styles.menu_title} onClick={this.handleClick} >
                         <span>
@@ -42,6 +42,7 @@ export default class Menu extends Component{
                     <a onClick={() => this.handleRhythm("jigs")}>Jigs</a>
                     <a onClick={() => this.handleRhythm("hornpipes")}>Hornpipes</a>
                     <a onClick={() => this.handleRhythm("polkas")}>Polkas</a>
+                    <a onClick={() => this.handleRhythm("slowsession")}>Lyon session</a>
                 </div>
             </div>
         )

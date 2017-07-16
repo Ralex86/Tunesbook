@@ -123,13 +123,13 @@ export default class Main extends Component {
                         {filteredTunes ? (
                             filteredTunes.map(tune => (
                                 <NavLink exact to={`/${tune.id}`} key={tune.id} className={styles.sidebar_item} activeClassName={styles.active} >
-                                    <div style={{width: '33px'}}>
+                                    <div style={{width: '33px', color: '#ccc'}}>
                                         {tune.id}
                                     </div>
                                     <div style={{flex: 1, maxWidth: '300px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
                                         {tune.T}
                                     </div>
-                                    <div style={{width: '33px', alignSelf: 'flexEnd'}}> 
+                                    <div style={{width: '33px', alignSelf: 'flexEnd', color: '#ccc'}}> 
                                         {tune.K}
                                     </div>
                                 </NavLink>
