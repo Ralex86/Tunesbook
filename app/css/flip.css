@@ -1,0 +1,117 @@
+.dashboardCard {
+    width: 550px;
+    height: 200px;
+    transform-style: preserve-3d;
+    position: relative;
+    user-select: none;
+
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+    margin-left: 7.5rem;
+}
+
+.dashboardCardFront,
+.dashboardCardBack {
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    box-shadow: rgba(84, 92, 95, 0.25) 0px 2px 4px 0px; 
+}
+
+.dashboardCardFront {
+    z-index: 2;
+    transform: rotateY(0deg);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboardCardFront ul {
+    width: 100%;
+}
+
+.dashboardCardFront ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0.75rem;
+    font-size: small;
+    cursor: pointer;
+}
+
+.dashboardCardFront ul li:nth-child(odd){
+    background: #f9f9f9;
+}
+
+
+.dashboardCardFront ul li:hover {
+    color: #398df0;
+}
+
+.dashboardCardBack {
+    transform: rotateY(180deg);
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dashboardCardBack .btn{
+    align-self: center;
+}
+
+.btn{
+    width: calc(100% - 2rem);
+    padding: 0.35rem;
+    margin-bottom: 0.5rem;
+    background: rgba(57,141,240,0.6);
+    color: white;
+    text-align: center;
+    border-radius: 3px;
+    
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cancel{
+    align-self: flex-end;
+}
+
+.cancel:hover{
+    color: #398df0;
+}
+
+.flipinput{
+    flex: 1 1 auto;
+    position: relative;
+    height: calc(100% - 1rem);
+    padding: .5rem
+}
+
+.flipinput input{
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 2rem;
+    padding: 0 .75rem 1px 0.5rem;
+    font-size: .875rem;
+    background: #fff;
+    border: 1px solid;
+    border-color: #d2d2d2;
+    border-radius: 3px
+}
+
+.flipinput input:focus{
+    outline: 0; 
+    border-color: #35b5f4; 
+    box-shadow: 0 0 1px #35b5f4 
+}   
+

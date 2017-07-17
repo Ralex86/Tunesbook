@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import FaMusic from 'react-icons/lib/fa/music'
 import FaYoutubePlay from 'react-icons/lib/fa/youtube-play'
+import Flip from './Flip.jsx'
+
 import 'whatwg-fetch'
 
 
@@ -16,6 +18,8 @@ export default class Tune extends Component {
             tune: props.tune,
             svg: null,
             showabc: false,
+            showlist: false,
+            videolist: null,
             videoid: "KdgpL3H-4Hs"
         }
 
@@ -32,6 +36,7 @@ export default class Tune extends Component {
                 })    
             })
             .catch(err => console.log(err))
+        
     }
 
     componentWillReceiveProps(nextProps){
@@ -56,8 +61,10 @@ export default class Tune extends Component {
     }
     
     handlePlayer(){
-        console.log(this.props, this.state.videoid)
-        this.props.handlePlayer(this.state.videoid)
+        //this.props.handlePlayer(this.state.videoid)
+        this.setState((prevState, props) => {
+            return { showlist: !prevState.showlist } 
+        })
     }
 
     render(){
@@ -74,6 +81,10 @@ export default class Tune extends Component {
                         <FaMusic/> <span>Abc</span>
                     </div>
                 </div>
+
+                {this.state.showlist ? (
+                    <Flip/>  
+                ) : (null)}
                 
                 {tune && this.state.showabc ? (
                     <div className={styles.abc}>
