@@ -1,7 +1,8 @@
 .root{
     position: absolute;
     z-index: 1;
-    height: 100%;
+    height: calc(100% - 3.5rem);
+    margin-top: 3.5rem;
     width: 100%;
     overflow: hidden;
     background: #fff;
@@ -62,7 +63,7 @@
     position: relative;
     z-index: 3;
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
     background: #fff;
     -webkit-transition: margin-left .35s ease-in-out;
     transition: margin-left .35s ease-in-out;
@@ -70,10 +71,9 @@
 
 .content{
     position: relative;
-    height: calc(100% - 5.5rem);
-    background: white;
-    /*margin-left: .875rem;*/
-    padding: 4.5rem 1rem 1rem 1rem;
+    height: calc(100% - 2rem);
+    background: #fff;
+    padding: 1rem 1rem 1rem 1rem;
     font-size: .875rem;
     pointer-events: auto;
     -webkit-overflow-scrolling: touch

@@ -3,13 +3,11 @@ import {Route} from 'react-router-dom'
 
 //my modules
 import styles from './../css/intro.css'
-import Notif from './../components/Notif.jsx'
 
 const Intro = (props) => {
     return (
             <Route exact={true} path="/" render={ ()=> (
                 <div className={styles.intro}>
-                    <Notif/>
                     <div className={styles.intro_message}>
                         <h2>Welcome !</h2>
                         <p>

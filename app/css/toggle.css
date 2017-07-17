@@ -1,5 +1,5 @@
 .toggle{
-    position: fixed;
+    position: absolute;
     z-index: 4;
     cursor: pointer;
     top: 0.45rem;

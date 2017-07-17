@@ -4,13 +4,16 @@ import 'whatwg-fetch'
 
 //my modules
 import styles from './../css/main.css'
-import Chat from './Chat.jsx'
+import Navbar from './Navbar.jsx'
 import Toggle from './Toggle.jsx'
 import Tune from './Tune.jsx'
 import Search from './Search.jsx'
 import SortBar from './SortBar.jsx'
 import Player from './Player.jsx'
 import Intro from './../pages/Intro.jsx'
+import Discussion from './../pages/Discussion.jsx'
+import Contact from './../pages/Contact.jsx'
+import Notif from './../components/Notif.jsx'
 
 export default class Main extends Component {
     constructor(props){
@@ -114,7 +117,8 @@ export default class Main extends Component {
                 {this.state.player && this.state.videoid ? (
                     <Player id={this.state.videoid}/>
                 ) : (null)}
-                <Chat/>
+                <Notif/>
+                <Navbar/>
                 <div className={styles.root}>
                     <Search tunes={tunes} setRhythm={this.setRhythm} updateTuneList={updateTuneList}/>
                     <SortBar by={this.state.by} sortById={this.sortById} sortByName={this.sortByName} sortByKey={this.sortByKey}/>
@@ -122,7 +126,7 @@ export default class Main extends Component {
                     <div className={styles.sidebar} >
                         {filteredTunes ? (
                             filteredTunes.map(tune => (
-                                <NavLink exact to={`/${tune.id}`} key={tune.id} className={styles.sidebar_item} activeClassName={styles.active} >
+                                <NavLink exact to={`/${this.state.rhythm}/${tune.id}`} key={tune.id} className={styles.sidebar_item} activeClassName={styles.active} >
                                     <div style={{width: '33px', color: '#ccc'}}>
                                         {tune.id}
                                     </div>
@@ -145,8 +149,10 @@ export default class Main extends Component {
 
                         <div className={styles.content}>
                             <Intro/>
+                            <Discussion/>
+                            <Contact/>
                             {tunes && (
-                                <Route path="/:tuneId" render={(routeProps) => (
+                                <Route path={ `/${this.state.rhythm}/:tuneId` } render={(routeProps) => (
                                     <Tune handlePlayer={this.handlePlayer} rhythm={this.state.rhythm} {...routeProps} tune={tunes.find( t => t.id == routeProps.match.params.tuneId)}/>
                                 )} />
                             )}

@@ -19,7 +19,8 @@
     margin: 1.5rem 0;
     /* padding: .5rem .875rem; */
     border: 1px solid #89da70;
-    border-radius: 3px
+    border-radius: 3px;
+    overflow-y: auto;
 }
 
 .intro_message a:hover {

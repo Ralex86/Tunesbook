@@ -1,9 +1,8 @@
 .iconbar{
-    position: fixed;
-    z-index: 4;
-    top: 0;
-    right: 0;
-    margin: 1rem 4rem 0 0;
+    /*top: 0;*/
+    /*right: 0;*/
+    /*margin: 0rem 1rem 0 0;*/
+    padding-right: 2rem;
     display: flex;
     flex-direction: row;
     font-size: 1.5rem;
@@ -23,7 +22,8 @@
     color: #ccc;
     cursor:pointer;
     padding: 0.5rem;
-    position: relative
+    position: relative;
+    flex-shrink: 0;
 }
 
 .icon .tooltip {
@@ -69,7 +69,7 @@
   font-size: 10px;
 
   position: absolute; /* Position the badge within the relatively positioned button */
-  top: 0;
+  top: 0.5rem;
   right: 0;
   font-weight: bold;
 }
@@ -177,15 +177,3 @@
     box-shadow: 0 0 1px #35b5f4 
 }   
 
-
-
-@media (min-width:481px)  {
-    .iconbar{
-        display: none;
-    }
-}
-@media (min-width:641px)  {
-    .iconbar{
-        display: flex;
-    }
-}
