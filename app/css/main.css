@@ -71,9 +71,10 @@
 
 .content{
     position: relative;
-    height: calc(100% - 2rem);
+    perspective: 2000;
+    height: calc(100% - 3rem);
     background: #fff;
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 3rem 1rem 0rem 1rem;
     font-size: .875rem;
     pointer-events: auto;
     -webkit-overflow-scrolling: touch

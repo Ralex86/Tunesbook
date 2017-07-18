@@ -86,7 +86,6 @@ export default class Main extends Component {
     }
 
     setRhythm(rhythm){
-        console.log(rhythm)
         fetch(`http://alexandre.hassler.fr:3000/tunes/${rhythm}`)
             .then(res => res.json())
             .then(tunes => {
@@ -109,6 +108,7 @@ export default class Main extends Component {
         })
     }
 
+
     render(){
         const {tunes, filteredTunes} = this.state
         const updateTuneList = this.updateTuneList
@@ -117,7 +117,7 @@ export default class Main extends Component {
                 {this.state.player && this.state.videoid ? (
                     <Player id={this.state.videoid}/>
                 ) : (null)}
-                <Notif/>
+                <Notif />
                 <Navbar/>
                 <div className={styles.root}>
                     <Search tunes={tunes} setRhythm={this.setRhythm} updateTuneList={updateTuneList}/>

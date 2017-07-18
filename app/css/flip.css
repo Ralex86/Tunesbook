@@ -32,6 +32,11 @@
 
 .dashboardCardFront ul {
     width: 100%;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: .9em;
+    color: #333;
 }
 
 .dashboardCardFront ul li {
@@ -79,6 +84,9 @@
 
 .cancel{
     align-self: flex-end;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .cancel:hover{
@@ -115,3 +123,9 @@
     box-shadow: 0 0 1px #35b5f4 
 }   
 
+.nocontent{
+    display: flex;
+    margin-top: 4rem;
+    align-content: center;
+    justify-content: center;
+}

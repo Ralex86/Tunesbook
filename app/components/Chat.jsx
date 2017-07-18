@@ -119,7 +119,7 @@ paddingLeft: '0.5rem'}} >{message.createdAt}</span>
                 </div>
             ) : null
 
-        const messagebadge = this.state.messages.length > 0 ? (
+        const messagebadge = ( this.state.messages.length > 0 && !this.state.display  ) ? (
             <span className={styles.badge}> {this.state.messages.length} </span>
         ) : (
             null

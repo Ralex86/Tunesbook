@@ -6,12 +6,54 @@ class DashboardCard extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            rotate: 0
+            rotate: 0,
+            videolist: null,
+            link: "",
+            url: ""
         }
+
+        this.handleInputChange = this.handleInputChange.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleInputChange(event){
+        const target = event.target
+        const value = target.value
+        const name = target.name
+        
+        console.log(value)
+        //cool ES6 feature to remember
+        this.setState({
+            [name]: value
+        })
+    }
+
+    handleClick(){
+        if(this.state.url && this.state.title){
+        
+            this.setState({rotate: rotate + 180 })
+        }
+    }
+
+    componentDidMount(){
+        this.setState({
+            videolist: this.props.videolist   
+        }) 
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            videolist: nextProps.videolist 
+        }) 
+    }
+
+    handleVideoClick(youtubeID){
+        this.props.handlePlayer(youtubeID)
     }
 
     render() {
         const { rotate } = this.state
+        var { videolist } = this.state
         return (
             <Motion
                 style={{y: rotate == 0 ? rotate : spring(rotate)}}
@@ -31,26 +73,34 @@ class DashboardCard extends React.Component {
                         >
                             <div className={ styles.dashboardCardFront }>
                                 <ul>
-                                    <li><span>Castkills</span><span>https://youtu.be/uWmB9qdS9MA</span><span>15/08/2017</span></li>
-                                    <li><span>Castkills</span><span>https://youtu.be/uWmB9qdS9MA</span><span>15/08/2017</span></li>
-                                    <li><span>Castkills</span><span>https://youtu.be/uWmB9qdS9MA</span><span>15/08/2017</span></li>
-                                    <li><span>Castkills</span><span>https://youtu.be/uWmB9qdS9MA</span><span>15/08/2017</span></li>
-                                    <li><span>Castkills</span><span>https://youtu.be/uWmB9qdS9MA</span><span>15/08/2017</span></li>
+                                    {videolist && videolist.length > 0 ? (
+                                        videolist.map(link => (
+                                            <li onClick={() => this.handleVideoClick(link.youtubeID)} key={link.id}><span>{ link.title }</span> <span> { link.youtubeID } </span></li> 
+                                        ))
+                                    
+                                    ) : (
+                                    <div className={styles.nocontent}>
+                                        No video yet!
+                                    </div> 
+                                    )}
                                 </ul>
                                 <div className={styles.btn} onClick={() => this.setState({rotate: rotate + 180 })}>
                                     Click to add a new video !   
                                 </div>
                             </div>
                             <div className={ styles.dashboardCardBack }>
+                                <div className={styles.cancel} onClick={() => this.setState({rotate: rotate + 180 })} >
+                                    Cancel
+                                </div>
                                 <div>
-                                    <div className={styles.cancel}>
-                                        Cancel
+                                    <div className={styles.flipinput}>
+                                        <input name="title" onChange={this.handleInputChange} type='text' placeholder='Title of the video' />
                                     </div>
                                     <div className={styles.flipinput}>
-                                        <input type='text' placeholder='Youtube link' />
+                                        <input name="url" onChange={this.handleInputChange} type='text' placeholder='Youtube link' />
                                     </div>
                                 </div>
-                                <div className={styles.btn} onClick={() => this.setState({rotate: rotate + 180 })}>
+                                <div className={styles.btn} onClick={() => this.handleClick()}>
                                     Add the link to the database !    
                                 </div>
                             </div>
@@ -62,9 +112,13 @@ class DashboardCard extends React.Component {
 }
 
 export default class Flip extends React.Component {
+    constructor(props){
+        super(props)
+    }
+
     render() {
         return(
-            <DashboardCard/>
+            <DashboardCard handlePlayer={this.props.handlePlayer} videolist={this.props.videolist}/>
         )
     }
 }
