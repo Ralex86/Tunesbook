@@ -19,6 +19,30 @@ class DashboardCard extends React.Component {
         this.updateAfterSuccess = this.updateAfterSuccess.bind(this)
     }
 
+    componentDidMount(){
+        console.log(this.props)
+        fetch(`http://alexandre.hassler.fr:3000/youtube/${this.props.rhythm}/${this.props.tuneid}`)
+            .then(res => res.json())
+            .then(list => {
+                this.setState({
+                    videolist: list
+                })    
+            })
+            .catch(err => console.log(err))
+    }
+
+
+    componentWillReceiveProps(){
+        fetch(`http://alexandre.hassler.fr:3000/youtube/${this.props.rhythm}/${this.props.tuneid}`)
+            .then(res => res.json())
+            .then(list => {
+                this.setState({
+                    videolist: list
+                })    
+            })
+            .catch(err => console.log(err))
+    }
+
     handleInputChange(event){
         const target = event.target
         const value = target.value
@@ -71,17 +95,17 @@ class DashboardCard extends React.Component {
         }
     }
 
-    componentDidMount(){
-        this.setState({
-            videolist: this.props.videolist   
-        }) 
-    }
+    //componentDidMount(){
+    //    this.setState({
+    //        videolist: this.props.videolist   
+    //    }) 
+    //}
 
-    componentWillReceiveProps(nextProps){
-        this.setState({
-            videolist: nextProps.videolist 
-        }) 
-    }
+    //componentWillReceiveProps(nextProps){
+    //    this.setState({
+    //        videolist: nextProps.videolist 
+    //    }) 
+    //}
 
     handleVideoClick(youtubeID){
         this.props.handlePlayer(youtubeID)

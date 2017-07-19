@@ -18,8 +18,7 @@ export default class Tune extends Component {
             tune: props.tune,
             svg: null,
             showabc: false,
-            showlist: false,
-            videolist: []
+            showlist: false
         }
 
         this.handleClick = this.handleClick.bind(this)
@@ -36,14 +35,14 @@ export default class Tune extends Component {
             })
             .catch(err => console.log(err))
         
-        fetch(`http://alexandre.hassler.fr:3000/youtube/${this.props.rhythm}/${this.props.tune.id}`)
-            .then(res => res.json())
-            .then(list => {
-                this.setState({
-                    videolist: list
-                })    
-            })
-            .catch(err => console.log(err))
+        //fetch(`http://alexandre.hassler.fr:3000/youtube/${this.props.rhythm}/${this.props.tune.id}`)
+        //    .then(res => res.json())
+        //    .then(list => {
+        //        this.setState({
+        //            videolist: list
+        //        })    
+        //    })
+        //    .catch(err => console.log(err))
     }
 
     componentWillReceiveProps(nextProps){
@@ -57,14 +56,14 @@ export default class Tune extends Component {
                 })
                 .catch(err => console.log(err))
 
-            fetch(`http://alexandre.hassler.fr:3000/youtube/${nextProps.rhythm}/${nextProps.tune.id}`)
-                .then(res => res.json())
-                .then(list => {
-                    this.setState({
-                        videolist: list
-                    })    
-                })
-                .catch(err => console.log(err))
+            //fetch(`http://alexandre.hassler.fr:3000/youtube/${nextProps.rhythm}/${nextProps.tune.id}`)
+            //    .then(res => res.json())
+            //    .then(list => {
+            //        this.setState({
+            //            videolist: list
+            //        })    
+            //    })
+            //    .catch(err => console.log(err))
         } else {
             return
         }
@@ -85,7 +84,7 @@ export default class Tune extends Component {
 
     render(){
         const {tune} = this.props
-        const {svg, videolist} = this.state
+        const {svg} = this.state
      
         return (
             <div>
@@ -99,7 +98,7 @@ export default class Tune extends Component {
                 </div>
 
                 {this.state.showlist ? (
-                    <Flip handlePlayer={this.props.handlePlayer} videolist={videolist} tuneid={this.props.tune.id} rhythm={this.props.rhythm}/>  
+                    <Flip handlePlayer={this.props.handlePlayer} tuneid={this.props.tune.id} rhythm={this.props.rhythm}/>  
                 ) : (null)}
                 
                 {tune && this.state.showabc ? (
