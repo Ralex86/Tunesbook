@@ -2,6 +2,8 @@ import React from 'react'
 import { Motion, spring } from 'react-motion'
 import styles from './../css/flip.css'
 
+import 'whatwg-fetch'
+
 class DashboardCard extends React.Component {
     constructor(props) {
         super(props)
@@ -14,6 +16,7 @@ class DashboardCard extends React.Component {
 
         this.handleInputChange = this.handleInputChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.updateAfterSuccess = this.updateAfterSuccess.bind(this)
     }
 
     handleInputChange(event){
@@ -28,10 +31,43 @@ class DashboardCard extends React.Component {
         })
     }
 
+    updateAfterSuccess(){
+        const {rotate} = this.state
+        fetch(`http://alexandre.hassler.fr:3000/youtube/${this.props.rhythm}/${this.props.tuneid}`)
+            .then(res => res.json())
+            .then(list => {
+                this.setState({
+                    videolist: list
+                })    
+                this.setState({rotate: rotate + 180 })
+            })
+            .catch(err => console.log(err))
+    }
+
     handleClick(){
-        if(this.state.url && this.state.title){
-        
-            this.setState({rotate: rotate + 180 })
+        if(this.state.url && this.state.title && this.state.videolist.length < 5){
+            let body =JSON.stringify({
+                url: this.state.url,
+                title: this.state.title,
+                tuneid: this.props.tuneid,
+                rhythm: this.props.rhythm
+            })
+            console.log(body)
+            console.log("Sending...")
+            fetch('http://alexandre.hassler.fr:3000/submitvideo', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: body
+            })
+                .then(res => res.json())
+                .then(message => {
+                    console.log(message)
+                    this.updateAfterSuccess()
+                })
+                .catch(err => console.log(err))
         }
     }
 
@@ -118,7 +154,7 @@ export default class Flip extends React.Component {
 
     render() {
         return(
-            <DashboardCard handlePlayer={this.props.handlePlayer} videolist={this.props.videolist}/>
+            <DashboardCard tuneid={this.props.tuneid} rhythm={this.props.rhythm}  handlePlayer={this.props.handlePlayer} videolist={this.props.videolist}/>
         )
     }
 }

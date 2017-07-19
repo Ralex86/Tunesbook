@@ -26,8 +26,8 @@ export default class Notif extends Component{
         return(
             this.state.notif ? (
                 <div className={styles.notif}>
-                    <h2>Updates (17/08/17)</h2>
-                    <p>WEBSITE UNDER MAINTENANCE, user experience could be affected...</p>
+                    <h2>Updates (18/08/17)</h2>
+                    <p>Now the videos for each tune and the youtube player should be correctly bound. Hopefully you will be able to add video yourself soon !</p>
                     <p><a href="mailto:hassler@monemail.com">Alexandre Hassler</a></p>
                     <FaClose className={styles.notif_close} onClick={() => this.handleClick()}/>
                 </div>

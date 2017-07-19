@@ -99,7 +99,7 @@ export default class Tune extends Component {
                 </div>
 
                 {this.state.showlist ? (
-                    <Flip handlePlayer={this.props.handlePlayer} videolist={videolist}/>  
+                    <Flip handlePlayer={this.props.handlePlayer} videolist={videolist} tuneid={this.props.tune.id} rhythm={this.props.rhythm}/>  
                 ) : (null)}
                 
                 {tune && this.state.showabc ? (
