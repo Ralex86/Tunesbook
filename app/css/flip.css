@@ -96,7 +96,7 @@
 .flipinput{
     flex: 1 1 auto;
     position: relative;
-    height: calc(100% - 1rem);
+    /*height: calc(100% - 1rem);*/
     padding: .5rem
 }
 

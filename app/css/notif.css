@@ -3,7 +3,7 @@
     z-index: 2;
     bottom: 1rem;
     right: 1rem;
-    width: 25rem;
+    width: 18rem;
     max-width: 90%;
     padding: .625rem 1rem;
     margin: 1rem;
@@ -21,6 +21,7 @@
     margin: 0 0 .5rem;
     line-height: 1rem;
     font-size: inherit;
+    color: #00D900;
 }
 
 .notif_close:before{
@@ -48,4 +49,22 @@
 
 .notif p:last-child{
     margin-bottom: 0;
+}
+
+.notif li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.notif li span:last-child{
+    color: #8a8a8a;
+}
+
+
+.notif li span:first-child{
+    width: 222px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
