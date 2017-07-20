@@ -72,7 +72,7 @@
     width: calc(100% - 2rem);
     padding: 0.35rem;
     margin-bottom: 0.5rem;
-    background: rgba(57,141,240,0.6);
+    background: #398df0; /* rgba(57,141,240,0.6); */
     color: white;
     text-align: center;
     border-radius: 3px;

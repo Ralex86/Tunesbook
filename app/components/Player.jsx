@@ -1,11 +1,19 @@
 import React,{Component} from 'react'
 import YouTube from 'react-youtube'
+import FaClose from 'react-icons/lib/fa/close'
 
 import styles from './../css/player.css'
 
 export default class Player extends React.Component{
     constructor(props){
         super(props)
+
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+
+    handleClick(){
+        this.props.handlePlayer(null)
     }
 
     render(){
@@ -26,6 +34,10 @@ export default class Player extends React.Component{
                     videoId={videoid}
                     opts={opts}
                 />
+                <div className={styles.youtube_close} onClick={() => this.handleClick()} >
+                    <FaClose/>
+                    Close youtube player
+                </div>
             </div>
         )
     }

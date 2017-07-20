@@ -95,17 +95,6 @@ class DashboardCard extends React.Component {
         }
     }
 
-    //componentDidMount(){
-    //    this.setState({
-    //        videolist: this.props.videolist   
-    //    }) 
-    //}
-
-    //componentWillReceiveProps(nextProps){
-    //    this.setState({
-    //        videolist: nextProps.videolist 
-    //    }) 
-    //}
 
     handleVideoClick(youtubeID){
         this.props.handlePlayer(youtubeID)

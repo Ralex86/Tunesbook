@@ -115,7 +115,7 @@ export default class Main extends Component {
         return(
             <div>
                 {this.state.player && this.state.videoid ? (
-                    <Player id={this.state.videoid}/>
+                    <Player id={this.state.videoid} handlePlayer={this.handlePlayer}/>
                 ) : (null)}
                 <Notif />
                 <Navbar/>
