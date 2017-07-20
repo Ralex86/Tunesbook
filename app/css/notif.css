@@ -63,7 +63,7 @@
 
 
 .notif li span:first-child{
-    width: 222px;
+    width: 200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
